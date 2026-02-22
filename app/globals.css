@@ -1,26 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #020202;
+  --foreground: #ffffff;
+  --accent-gold: #e5c366;
+  --accent-gold-bright: #fff3d6;
+  --accent-aurora: #8b5cf6;
+  --accent-aurora-glow: rgba(139, 92, 246, 0.3);
+  --obsidian-deep: #050505;
+  --glass-white: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-gold: var(--accent-gold);
+  --color-gold-bright: var(--accent-gold-bright);
+  --color-aurora: var(--accent-aurora);
+  --font-sans: 'Outfit', var(--font-geist-sans), Inter, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #020202;
+    --foreground: #ffffff;
   }
+}
+
+html[dir="rtl"] body {
+  font-family: 'Heebo', Arial, sans-serif;
+  direction: rtl;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Heebo', Arial, Helvetica, sans-serif;
+}
+
+/* RTL fix: flip left/right icon positioning */
+html[dir="rtl"] .rtl-flip {
+  transform: scaleX(-1);
+}
+
+@utility animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 15s ease infinite;
+}
+
+@utility glass-lumina {
+  background: rgba(5, 5, 5, 0.6);
+  backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+@utility glass-tactical {
+  @apply glass-lumina;
+}
+
+@utility aurora-glow {
+  box-shadow: 0 0 30px var(--accent-aurora-glow), 0 0 60px rgba(139, 92, 246, 0.1);
+}
+
+@utility cyber-grid {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, rgba(212, 175, 55, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(212, 175, 55, 0.05) 1px, transparent 1px);
+}
+
+@utility hologram-glow {
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.5), 0 0 20px rgba(212, 175, 55, 0.2);
+}
+
+@utility tactical-container {
+  @apply max-w-7xl mx-auto px-4 md:px-8 w-full;
+}
+
+/* For backward compatibility with elite classes during transition */
+@utility glass-elite {
+  @apply glass-tactical;
+}
+
+@utility elite-container {
+  @apply tactical-container;
+}
+
+@utility text-gradient-lumina {
+  background: linear-gradient(135deg, #ffffff 0%, #e5c366 50%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@layer base {
+  .scanline {
+    width: 100%;
+    height: 100px;
+    z-index: 10;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(212, 175, 55, 0.05) 50%, rgba(0, 0, 0, 0) 100%);
+    opacity: 0.1;
+    position: absolute;
+    bottom: 100%;
+    animation: scanline 8s linear infinite;
+  }
+
+  @keyframes scanline {
+    0% {
+      bottom: 100%;
+    }
+
+    100% {
+      bottom: -100px;
+    }
+  }
+
+  /* Custom Tactical Scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #050510;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #d4af37;
+    border-radius: 0px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #f3e5ab;
+  }
 }
