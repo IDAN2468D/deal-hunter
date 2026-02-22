@@ -96,48 +96,46 @@ export const DealCard: React.FC<DealCardProps> = ({ task, index }) => {
             </div>
 
             {/* Tactical Status Bar */}
-            <div className="relative z-30 p-10 flex justify-between items-start">
-                <div className="flex flex-col gap-4">
+            <div className="relative z-30 p-8 flex justify-between items-start">
+                <div className="flex items-center gap-3">
                     <motion.div
-                        animate={{ x: isHovered ? 10 : 0 }}
-                        className="glass-lumina px-5 py-2.5 rounded-2xl flex items-center gap-3 w-fit"
+                        animate={{ x: isHovered ? 5 : 0 }}
+                        className="glass-lumina px-4 py-2 rounded-xl flex items-center gap-2 w-fit"
                     >
                         <div className="w-1.5 h-1.5 rounded-full bg-aurora animate-pulse shadow-[0_0_12px_var(--accent-aurora)]" />
-                        <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/40">Lumina Live</span>
+                        <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/40">Lumina Live</span>
                     </motion.div>
 
-                    <div className="flex gap-2">
-                        <div className="glass-lumina text-gold text-[9px] font-black px-4 py-2 rounded-full border border-gold/10 tracking-widest uppercase">
-                            MATCH SCORE: 98
-                        </div>
+                    <div className="glass-lumina text-gold text-[8px] font-black px-3 py-2 rounded-full border border-gold/10 tracking-widest uppercase">
+                        MATCH: 98
                     </div>
                 </div>
 
-                <div className="p-4 glass-lumina rounded-2xl border border-white/10 text-white group-hover:border-aurora/40 transition-colors">
+                <div className="p-3 glass-lumina rounded-xl border border-white/10 text-white group-hover:border-aurora/40 transition-colors">
                     {getIcon(task.type)}
                 </div>
             </div>
 
             {/* Core Narrative Panel */}
-            <div className="absolute bottom-0 left-0 right-0 p-10 z-30">
-                <div className="flex flex-col gap-8">
-                    <div className="space-y-2">
+            <div className="absolute bottom-0 left-0 right-0 p-8 z-30">
+                <div className="flex flex-col gap-6">
+                    <div className="space-y-1">
                         <motion.h3
                             animate={{ opacity: isHovered ? 1 : 0.8, x: isHovered ? 10 : 0 }}
-                            className="text-5xl font-black text-white tracking-tighter uppercase italic drop-shadow-2xl"
+                            className="text-4xl font-black text-white tracking-tighter uppercase italic drop-shadow-2xl"
                         >
                             {task.destination}
                         </motion.h3>
-                        <div className="flex items-center gap-3 text-white/20 text-[10px] font-black uppercase tracking-[0.5em]">
-                            <Compass className="w-3.5 h-3.5" /> High-Asset Discovery
+                        <div className="flex items-center gap-3 text-white/20 text-[9px] font-black uppercase tracking-[0.4em]">
+                            <Compass className="w-3 h-3" /> High-Asset Discovery
                         </div>
                     </div>
 
-                    <div className="flex items-baseline gap-3">
-                        <span className="text-2xl font-black text-gold/40">$</span>
-                        <span className="text-7xl font-black text-white tracking-tighter leading-none text-gradient-lumina">
+                    <div className="flex items-baseline gap-2">
+                        <span className="text-6xl font-black text-white tracking-tighter leading-none text-gradient-lumina">
                             {view === 'FLIGHT' ? Math.floor(task.budget * 0.45) : task.budget}
                         </span>
+                        <span className="text-xl font-black text-gold/40 italic">$</span>
                     </div>
 
                     <div className="flex flex-col gap-5 mt-4">

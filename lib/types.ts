@@ -1,4 +1,21 @@
-import { Deal, Destination, SearchLog, PriceAlert } from '@prisma/client';
+import {
+    Deal as PrismaDeal,
+    Destination as PrismaDestination,
+    SearchLog as PrismaSearchLog,
+    PriceAlert as PrismaPriceAlert,
+    Itinerary as PrismaItinerary,
+    Prisma
+} from '@prisma/client';
+
+// Helper to handle JSON plan typing
+export type ItineraryPlan = {
+    day: number;
+    activities: {
+        time: string;
+        description: string;
+        location?: string;
+    }[];
+}[];
 
 export interface AnalyticsStats {
     totalSavings: number;
@@ -11,19 +28,23 @@ export interface AnalyticsStats {
         PENDING: number;
         FAILED: number;
     };
-    destDealCount: (Destination & {
+    destDealCount: (PrismaDestination & {
         dealCount: number;
         avgPrice: number;
     })[];
 }
 
 export interface AnalyticsData {
-    deals: (Deal & { destination: Destination | null })[];
-    destinations: Destination[];
-    searchLogs: SearchLog[];
-    priceAlerts: PriceAlert[];
+    deals: (PrismaDeal & { destination: PrismaDestination | null })[];
+    destinations: PrismaDestination[];
+    searchLogs: PrismaSearchLog[];
+    priceAlerts: PrismaPriceAlert[];
     stats: AnalyticsStats;
 }
+
+export type ItineraryWithDestination = PrismaItinerary & {
+    destination: PrismaDestination | null;
+};
 
 export interface PredictionPoint {
     day: string;
@@ -35,3 +56,4 @@ export interface PricePrediction {
     summary: string;
     risk: 'LOW' | 'MEDIUM' | 'HIGH';
 }
+

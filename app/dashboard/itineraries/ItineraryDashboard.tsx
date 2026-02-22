@@ -5,11 +5,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Compass, Calendar, MapPin, Trash2, ArrowRight, Sparkles, Loader2 } from 'lucide-react';
 import { fetchUserItineraries, deleteItinerary } from '@/app/actions/dashboard';
 import { ItineraryDrawer } from '@/app/components/ItineraryDrawer';
+import { ItineraryWithDestination, ItineraryPlan } from '@/lib/types';
 
 export default function ItineraryDashboard() {
-    const [itineraries, setItineraries] = useState<any[]>([]);
+    const [itineraries, setItineraries] = useState<ItineraryWithDestination[]>([]);
     const [loading, setLoading] = useState(true);
-    const [selectedItinerary, setSelectedItinerary] = useState<any | null>(null);
+    const [selectedItinerary, setSelectedItinerary] = useState<ItineraryWithDestination | null>(null);
 
     const loadData = async () => {
         setLoading(true);
@@ -96,7 +97,7 @@ export default function ItineraryDashboard() {
                                     <div className="flex items-center gap-4">
                                         <span className="flex items-center gap-1.5 text-[10px] font-black uppercase text-white/30 tracking-widest">
                                             <Calendar className="w-3 h-3" />
-                                            {itinerary.plan?.length || 0} Days
+                                            {(itinerary.plan as unknown as ItineraryPlan)?.length || 0} Days
                                         </span>
                                         <span className="w-1 h-1 rounded-full bg-white/10" />
                                         <span className="text-[10px] font-black uppercase text-[#d4af37] tracking-widest">
@@ -129,7 +130,7 @@ export default function ItineraryDashboard() {
                         destinationId={selectedItinerary.destinationId}
                         budget={2500} // Mock budget for view mode
                         startDate={new Date().toISOString()} // Mock dates for view mode
-                        endDate={new Date(Date.now() + 86400000 * (selectedItinerary.plan?.length || 3)).toISOString()}
+                        endDate={new Date(Date.now() + 86400000 * ((selectedItinerary.plan as unknown as ItineraryPlan)?.length || 3)).toISOString()}
                         //@ts-ignore - we'll update the drawer to handle pre-loaded plans if needed, but for now we'll let it re-generate or ideally we'd pass the pre-loaded plan. 
                         // For MVP discovery, it's better to show it works.
                         initialPlan={selectedItinerary.plan}

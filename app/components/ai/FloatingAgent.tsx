@@ -98,7 +98,7 @@ export function FloatingAgent() {
                                                 ) : tool.state === 'result' ? (
                                                     <div className="space-y-4">
                                                         <div className="text-[10px] font-black text-aurora uppercase tracking-[0.3em] mb-2">Discovery Verified</div>
-                                                        {Array.isArray(tool.result) ? (tool.result as any[]).map((deal: { title: string, price: number, link: string }, i: number) => (
+                                                        {Array.isArray(tool.result) ? (tool.result as { title: string, price: number, link: string }[]).map((deal, i: number) => (
                                                             <Link key={i} href={deal.link} className="block group">
                                                                 <div className="flex items-center justify-between p-4 glass-lumina rounded-2xl border border-white/5 group-hover:border-aurora/40 transition-all duration-300">
                                                                     <div className="flex items-center gap-3">

@@ -9,11 +9,22 @@ interface Props {
     params: { slug: string };
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    // @ts-ignore
+interface SeoPage {
+    id: string;
+    slug: string;
+    title: string;
+    metaDesc: string;
+    content: string;
+    status: string;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+export async function generateMetadata(props: Props): Promise<Metadata> {
+    const params = await props.params;
     const page = await (prisma as any).seoPage.findUnique({
         where: { slug: params.slug }
-    });
+    }) as SeoPage | null;
 
     if (!page) {
         return { title: 'Not Found' };
@@ -25,11 +36,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
 }
 
-export default async function TrendPage({ params }: Props) {
-    // @ts-ignore
+export default async function TrendPage(props: Props) {
+    const params = await props.params;
     const page = await (prisma as any).seoPage.findUnique({
         where: { slug: params.slug, status: "published" }
-    });
+    }) as SeoPage | null;
 
     if (!page) {
         notFound();

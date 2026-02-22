@@ -35,49 +35,9 @@ If the user asks for deals, use the 'searchDeals' tool.`;
         }
     }
 
-    const searchDealsTool = (tool as any)({
-        description: 'Search for active travel deals (flights or hotels) based on destination or max budget.',
-        parameters: z.object({
-            destination: z.string().describe('The name of the destination, city, or country.'),
-            maxBudget: z.number().optional().describe('Maximum budget in USD.'),
-        }),
-        execute: async ({ destination, maxBudget }: { destination: string; maxBudget?: number }) => {
-            const dest = await prisma.destination.findFirst({
-                where: { name: { contains: destination, mode: 'insensitive' } }
-            });
-
-            let deals = [];
-            if (dest) {
-                deals = await prisma.deal.findMany({
-                    where: {
-                        destinationId: dest.id,
-                        ...(maxBudget ? { price: { lte: maxBudget } } : {})
-                    },
-                    take: 3,
-                    orderBy: { price: "asc" }
-                });
-            } else {
-                deals = await prisma.deal.findMany({
-                    where: {
-                        title: { contains: destination, mode: "insensitive" },
-                        ...(maxBudget ? { price: { lte: maxBudget } } : {})
-                    },
-                    take: 3,
-                    orderBy: { price: "asc" }
-                });
-            }
-
-            if (deals.length === 0) {
-                return "No deals found matching that criteria right now.";
-            }
-
-            return JSON.stringify(deals.map(d => ({
-                title: d.title,
-                price: d.price,
-                type: d.type,
-                link: `/deals/${d.id}`
-            })));
-        },
+    const searchDealsParams = z.object({
+        destination: z.string().describe('The name of the destination, city, or country.'),
+        maxBudget: z.number().optional().describe('Maximum budget in USD.'),
     });
 
     const result = streamText({
@@ -85,7 +45,48 @@ If the user asks for deals, use the 'searchDeals' tool.`;
         messages,
         system: systemPrompt,
         tools: {
-            searchDeals: searchDealsTool,
+            searchDeals: tool({
+                description: 'Search for active travel deals (flights or hotels) based on destination or max budget.',
+                parameters: searchDealsParams,
+                execute: async (args: z.infer<typeof searchDealsParams>): Promise<string> => {
+                    const { destination, maxBudget } = args;
+                    const dest = await prisma.destination.findFirst({
+                        where: { name: { contains: destination, mode: 'insensitive' } }
+                    });
+
+                    let deals;
+                    if (dest) {
+                        deals = await prisma.deal.findMany({
+                            where: {
+                                destinationId: dest.id,
+                                ...(maxBudget ? { price: { lte: maxBudget } } : {})
+                            },
+                            take: 3,
+                            orderBy: { price: "asc" }
+                        });
+                    } else {
+                        deals = await prisma.deal.findMany({
+                            where: {
+                                title: { contains: destination, mode: "insensitive" },
+                                ...(maxBudget ? { price: { lte: maxBudget } } : {})
+                            },
+                            take: 3,
+                            orderBy: { price: "asc" }
+                        });
+                    }
+
+                    if (!deals || deals.length === 0) {
+                        return "No deals found matching that criteria right now.";
+                    }
+
+                    return JSON.stringify(deals.map(d => ({
+                        title: d.title,
+                        price: d.price,
+                        type: d.type,
+                        link: `/deals/${d.id}`
+                    })));
+                },
+            } as any),
         },
     });
 

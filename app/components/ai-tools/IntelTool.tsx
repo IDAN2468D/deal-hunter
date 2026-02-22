@@ -4,10 +4,11 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MessageSquare, ThumbsUp, ThumbsDown, Megaphone, Target, Sparkles, Activity, Star } from 'lucide-react';
 import { summarizeDestinationReviews } from '@/app/actions/reviews';
+import { ReviewSummary } from '@/lib/agents/review-summarizer';
 
 export function IntelTool() {
     const [isProcessing, setIsProcessing] = useState(false);
-    const [summary, setSummary] = useState<any>(null);
+    const [summary, setSummary] = useState<ReviewSummary | null>(null);
 
     // Mock reviews if no real data is passed
     const runAnalysis = async () => {
@@ -20,7 +21,7 @@ export function IntelTool() {
                 "Very safe city, great for walking around at night.",
                 "Expensive, but worth every penny for the luxury feel."
             ]);
-            if (res.success) setSummary(res.summary);
+            if (res.success && res.summary) setSummary(res.summary);
         } catch (error) {
             console.error(error);
         } finally {

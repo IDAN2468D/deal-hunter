@@ -9,8 +9,16 @@ interface BudgetSplitterProps {
     totalCost: number;
 }
 
+interface SplitDetail {
+    userId: string;
+    name: string;
+    baseShare: number;
+    pointDiscount: number;
+    finalShare: number;
+}
+
 export function BudgetSplitterView({ roomId, totalCost }: BudgetSplitterProps) {
-    const [splits, setSplits] = useState<any[]>([]);
+    const [splits, setSplits] = useState<SplitDetail[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
