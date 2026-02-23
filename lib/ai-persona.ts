@@ -57,7 +57,7 @@ export async function determineUserPersona(userId: string): Promise<PersonaType>
 
     // 3. Generate Persona Analysis
     const result = await generateObject({
-      model: google("gemini-1.5-flash"),
+      model: google("gemini-2.5-flash"),
       schema: PersonaSchema,
       prompt,
     });

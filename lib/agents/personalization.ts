@@ -60,7 +60,7 @@ export class PersonalizationAgent {
         `;
 
         try {
-            const rawOutput = await tryMultipleModels(prompt, ['gemini-2.5-flash', 'gemini-1.5-flash']);
+            const rawOutput = await tryMultipleModels(prompt, ['gemini-2.5-flash', 'gemini-2.5-flash']);
             if (!rawOutput) return availableDeals.slice(0, 3);
 
             const cleanJson = rawOutput.replace(/```json|```/g, '').trim();

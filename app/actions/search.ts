@@ -30,7 +30,7 @@ export async function performAgenticSearch(query: string, userId: string) {
                 query,
                 userId,
                 status: 'PENDING',
-                agentModel: 'gemini-1.5-flash'
+                agentModel: 'gemini-2.5-flash'
             }
         });
         searchLogId = log.id;

@@ -5,7 +5,7 @@ import { prisma } from '@/lib/prisma';
 import { auth } from '@/auth';
 
 const google = createGoogleGenerativeAI({
-    apiKey: process.env.GEMINI_API_KEY,
+    apiKey: process.env.GOOGLE_API_KEY || process.env.GEMINI_API_KEY,
 });
 
 // Allow streaming responses up to 30 seconds
@@ -41,7 +41,7 @@ If the user asks for deals, use the 'searchDeals' tool.`;
     });
 
     const result = streamText({
-        model: google('gemini-1.5-flash'),
+        model: google('gemini-2.5-flash'),
         messages,
         system: systemPrompt,
         tools: {

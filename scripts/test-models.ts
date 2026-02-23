@@ -1,9 +1,9 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
 async function test() {
-    const apiKey = "AIzaSyC1j2ZgO6BQTVrUd1UCdYYBsVpSV4KJ4HU";
+    const apiKey = "AIzaSyCBagg0Nb01hDaAi104wQpzZuuxK5C1P-Y";
     const genAI = new GoogleGenerativeAI(apiKey);
-    const models = ["gemini-1.5-flash", "gemini-1.5-flash", "gemini-1.5-flash", "gemini-1.5-pro", "gemini-pro"];
+    const models = ["gemini-2.5-flash", "gemini-2.5-flash", "gemini-2.5-flash", "gemini-2.5-pro", "gemini-pro"];
 
     for (const m of models) {
         console.log(`Testing model: ${m}...`);

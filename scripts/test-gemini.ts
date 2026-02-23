@@ -23,8 +23,8 @@ async function test() {
             console.log('Available Models (first 5):');
             data.models?.slice(0, 5).forEach((m) => console.log(`- ${m.name}`));
 
-            const hasFlash = data.models?.some((m) => m.name.includes('gemini-1.5-flash'));
-            console.log('\nHas gemini-1.5-flash:', hasFlash);
+            const hasFlash = data.models?.some((m) => m.name.includes('gemini-2.5-flash'));
+            console.log('\nHas gemini-2.5-flash:', hasFlash);
         }
     } catch (e: unknown) {
         console.error('Fetch failed:', e instanceof Error ? e.message : String(e));
