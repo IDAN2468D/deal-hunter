@@ -6,7 +6,7 @@ loadEnvFile('.env');
 
 async function testOrchestrator() {
     console.log("🐝 Starting Orchestrator Integration Test...");
-    console.log("API Key present:", !!process.env.GEMINI_API_KEY);
+    console.log("API Key present:", !!process.env.GOOGLE_API_KEY);
 
     const orchestrator = new Orchestrator();
 
@@ -15,7 +15,7 @@ async function testOrchestrator() {
 
     try {
         console.log(`Query: "${query}"`);
-        const tasks = await orchestrator.transform(query);
+        const tasks = await orchestrator.searchDeals(query);
 
         console.log("\n✅ Orchestration Successful!");
         console.log("Generated Tasks:");

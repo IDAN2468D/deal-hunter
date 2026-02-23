@@ -42,3 +42,5 @@ next-env.d.ts
 
 # laboratory testing
 /scripts/
+/scripts/test-models.ts
+/scripts/test-minimal.ts

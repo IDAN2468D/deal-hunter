@@ -1,7 +1,7 @@
 import { explainDeal, generateItinerary } from '../app/actions/ai-features';
 import { loadEnvFile } from 'node:process';
 
-loadEnvFile();
+loadEnvFile('.env');
 
 async function verifyAI() {
     console.log('🚀 Starting AI Structure Verification...\n');

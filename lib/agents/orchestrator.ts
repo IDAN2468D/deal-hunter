@@ -17,8 +17,14 @@ export class Orchestrator {
     }
 
     /**
-     * transform: The main entry point for NL decomposition.
-     * Implements self-correction feedback loop (Section 3 of Spec).
+     * transform: Alias for searchDeals to support legacy scripts.
+     */
+    async transform(query: string, retry: boolean = true): Promise<AgentTask[]> {
+        return this.searchDeals(query, retry);
+    }
+
+    /**
+     * searchDeals: The main entry point for NL decomposition.
      */
     async searchDeals(query: string, retry: boolean = true): Promise<AgentTask[]> {
         const cleanQuery = sanitizeInput(query);

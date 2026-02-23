@@ -1,4 +1,7 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import { loadEnvFile } from 'node:process';
+
+loadEnvFile('.env');
 
 // No complex env loading, just check if it's there
 const apiKey = process.env.GOOGLE_API_KEY;

@@ -1,7 +1,10 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import { loadEnvFile } from 'node:process';
+
+loadEnvFile('.env');
 
 async function test() {
-    const apiKey = process.env.GEMINI_API_KEY || "";
+    const apiKey = process.env.GOOGLE_API_KEY || "";
     const genAI = new GoogleGenerativeAI(apiKey);
     const models = ["gemini-2.5-flash", "gemini-2.5-flash", "gemini-2.5-flash", "gemini-2.5-pro", "gemini-pro"];
 

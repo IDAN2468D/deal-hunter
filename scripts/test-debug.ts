@@ -10,7 +10,7 @@ async function run() {
     console.log("RUNNING");
     const orch = new Orchestrator();
     console.log("ORCHESTRATOR CREATED");
-    const res = await orch.transform("Paris trip");
+    const res = await orch.searchDeals("Paris trip");
     console.log("RESULT:", JSON.stringify(res, null, 2));
 }
 

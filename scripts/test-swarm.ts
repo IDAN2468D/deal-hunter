@@ -1,5 +1,5 @@
 import { loadEnvFile } from 'node:process';
-loadEnvFile();
+loadEnvFile('.env');
 
 // Import after env is loaded
 import { orchestrateSearch } from '../app/actions/agent-swarm';
