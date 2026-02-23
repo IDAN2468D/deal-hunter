@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, Package, Sparkles } from 'lucide-react';
 import { generateItinerary, saveItinerary } from '@/app/actions/ai-features';
+import { architectItinerary } from '@/app/actions/itinerary-architect';
 import { exportToPdf } from '@/lib/pdf-generator';
 import { AIPackingList } from './ai/AIPackingList';
 import { FutureMemories } from './ai/FutureMemories';
@@ -62,6 +63,8 @@ export const ItineraryDrawer: React.FC<ItineraryDrawerProps> = ({
     const [activeTab, setActiveTab] = useState<'ITINERARY' | 'PACKING' | 'MEMORIES'>('ITINERARY');
     const [isSaving, setIsSaving] = useState(false);
     const [isSaved, setIsSaved] = useState(false);
+    const [isArchitecting, setIsArchitecting] = useState(false);
+    const [intelNarrative, setIntelNarrative] = useState<string | null>(null);
 
     const daysCount = calcDays(startDate, endDate);
 
@@ -88,6 +91,17 @@ export const ItineraryDrawer: React.FC<ItineraryDrawerProps> = ({
         const result = await saveItinerary(destinationId, itinerary);
         if (result.success) setIsSaved(true);
         setIsSaving(false);
+    };
+
+    const handleArchitect = async () => {
+        if (!itinerary || isArchitecting) return;
+        setIsArchitecting(true);
+        const result = await architectItinerary(destination, itinerary);
+        if (result.success && result.plan) {
+            setItinerary(result.plan);
+            setIntelNarrative(result.narrative || null);
+        }
+        setIsArchitecting(false);
     };
 
     return (
@@ -120,8 +134,10 @@ export const ItineraryDrawer: React.FC<ItineraryDrawerProps> = ({
                             status={status}
                             isSaving={isSaving}
                             isSaved={isSaved}
+                            isArchitecting={isArchitecting}
                             onExport={() => itinerary && exportToPdf(destination, itinerary)}
                             onSave={handleSave}
+                            onArchitect={handleArchitect}
                             onClose={onClose}
                         />
 
@@ -170,10 +186,22 @@ export const ItineraryDrawer: React.FC<ItineraryDrawerProps> = ({
                                                     <h3 className="text-5xl font-black text-white uppercase tracking-tighter italic">
                                                         {itinerary[activeDay].theme}
                                                     </h3>
-                                                    <div className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-[2.5rem] p-6 max-w-3xl glass-lumina">
+
+                                                    {intelNarrative && (
+                                                        <motion.div
+                                                            initial={{ opacity: 0, y: 10 }}
+                                                            animate={{ opacity: 1, y: 0 }}
+                                                            className="bg-aurora/10 border border-aurora/30 rounded-2xl p-4 flex items-center gap-3 text-aurora text-[10px] font-black uppercase tracking-widest text-right"
+                                                        >
+                                                            <div className="w-2 h-2 rounded-full bg-aurora animate-pulse shrink-0" />
+                                                            {intelNarrative}
+                                                        </motion.div>
+                                                    )}
+
+                                                    <div className="flex flex-row-reverse items-center gap-4 bg-white/5 border border-white/10 rounded-[2.5rem] p-6 max-w-3xl glass-lumina">
                                                         <Sparkles className="w-6 h-6 text-aurora flex-shrink-0" />
-                                                        <p className="text-white/80 text-sm leading-relaxed">
-                                                            <span className="text-aurora font-black uppercase text-[10px] tracking-[0.2em] mr-3">Insider Intelligence:</span>
+                                                        <p className="text-white/80 text-sm leading-relaxed text-right">
+                                                            <span className="text-aurora font-black uppercase text-[10px] tracking-[0.2em] ml-3">מודיעין עילאי:</span>
                                                             {itinerary[activeDay].tips}
                                                         </p>
                                                     </div>

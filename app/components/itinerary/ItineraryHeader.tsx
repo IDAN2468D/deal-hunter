@@ -10,8 +10,10 @@ interface ItineraryHeaderProps {
     status: string;
     isSaving: boolean;
     isSaved: boolean;
+    isArchitecting: boolean;
     onExport: () => void;
     onSave: () => void;
+    onArchitect: () => void;
     onClose: () => void;
 }
 
@@ -22,8 +24,10 @@ export const ItineraryHeader: React.FC<ItineraryHeaderProps> = ({
     status,
     isSaving,
     isSaved,
+    isArchitecting,
     onExport,
     onSave,
+    onArchitect,
     onClose,
 }) => {
     return (
@@ -34,25 +38,43 @@ export const ItineraryHeader: React.FC<ItineraryHeaderProps> = ({
                         <Sparkles className="w-4 h-4 text-gold" />
                     </div>
                     <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-gold/80">
-                        Lumina Intelligence Plan
+                        תוכנית מודיעין לומינה
                     </span>
                 </div>
-                <h2 className="text-4xl font-black text-white uppercase tracking-tight leading-none mb-3">
+                <h2 className="text-4xl font-black text-white uppercase tracking-tight leading-none mb-3 text-right">
                     {destination}
                 </h2>
-                <div className="flex items-center gap-5">
+                <div className="flex flex-row-reverse items-center gap-5">
                     <span className="flex items-center gap-2 text-white/40 text-[10px] font-bold uppercase tracking-widest">
                         <Calendar className="w-3.5 h-3.5" />
                         {daysCount} ימים
                     </span>
                     <span className="flex items-center gap-2 text-white/40 text-[10px] font-bold uppercase tracking-widest">
                         <MapPin className="w-3.5 h-3.5" />
-                        ${budget.toLocaleString()} Base
+                        ${budget.toLocaleString()} בסיס
                     </span>
                 </div>
             </div>
 
             <div className="flex items-center gap-3">
+                <button
+                    onClick={onArchitect}
+                    disabled={isArchitecting || status !== 'done'}
+                    className="group relative px-6 py-3.5 rounded-2xl text-[10px] font-bold uppercase tracking-widest transition-all flex items-center gap-2.5 bg-aurora/10 text-aurora border border-aurora/20 hover:bg-aurora/20 disabled:opacity-50 overflow-hidden"
+                >
+                    {isArchitecting ? (
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                        <Sparkles className="w-4 h-4 group-hover:scale-125 transition-transform" />
+                    )}
+                    <span>{isArchitecting ? 'מחשב מסלול...' : 'אדריכלות בזמן אמת'}</span>
+
+                    {/* Scan line effect */}
+                    {!isArchitecting && (
+                        <div className="absolute inset-0 w-1/2 bg-gradient-to-r from-transparent via-aurora/10 to-transparent skew-x-12 animate-shimmer" />
+                    )}
+                </button>
+
                 <button
                     onClick={onExport}
                     disabled={status !== 'done'}

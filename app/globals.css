@@ -51,6 +51,15 @@ html[dir="rtl"] .rtl-flip {
   animation: gradient-x 15s ease infinite;
 }
 
+@utility animate-shimmer {
+  animation: shimmer 2.5s infinite linear;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-150%) skewX(-15deg); }
+  100% { transform: translateX(250%) skewX(-15deg); }
+}
+
 @utility glass-lumina {
   background: rgba(5, 5, 5, 0.6);
   backdrop-filter: blur(24px) saturate(160%);

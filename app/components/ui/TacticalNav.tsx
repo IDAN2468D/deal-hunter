@@ -103,9 +103,9 @@ export function TacticalNav() {
                         </div>
 
                         <div className="flex items-center gap-4">
-                            <Link href="/hunter-portal" className="hidden sm:flex items-center gap-3 glass-lumina border border-white/10 px-6 py-3.5 rounded-2xl text-[10px] font-black text-white/60 hover:bg-gold hover:text-black hover:border-gold transition-all duration-500 uppercase tracking-widest group shadow-2xl">
+                            <Link href="/hunter-portal/vault" className="hidden sm:flex items-center gap-3 glass-lumina border border-white/10 px-6 py-3.5 rounded-2xl text-[10px] font-black text-white/60 hover:bg-gold hover:text-black hover:border-gold transition-all duration-500 uppercase tracking-widest group shadow-2xl">
                                 <Trophy className="w-4 h-4 text-gold group-hover:text-black transition-transform" />
-                                <span>עלית</span>
+                                <span>כספת צייד</span>
                             </Link>
                             <UserMenu />
                             <button
