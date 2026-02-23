@@ -173,56 +173,59 @@ export function EcoPilotTool() {
                                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                                 className="flex-1 overflow-y-auto custom-scrollbar space-y-8"
                             >
-                                {/* HERO METRICS */}
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                    <div className="glass-lumina p-8 rounded-[2rem] border border-white/5 bg-gradient-to-br from-emerald-500/[0.08] to-transparent text-right">
-                                        <div className="text-[10px] font-black text-emerald-500/50 uppercase tracking-[0.2em] mb-2">טביעת פחמן (KG CO2E)</div>
-                                        <div className="text-5xl font-black text-white tracking-tighter">{result.carbonFootprint}</div>
-                                        <div className="mt-4 flex items-center gap-2 justify-end">
-                                            <span className="text-[9px] font-mono text-white/20 uppercase tracking-widest">דיוק מוערך: 98.4%</span>
-                                        </div>
-                                    </div>
-                                    <div className="glass-lumina p-8 rounded-[2rem] border border-white/5 bg-gradient-to-br from-gold/[0.05] to-transparent text-right">
-                                        <div className="text-[10px] font-black text-gold/50 uppercase tracking-[0.2em] mb-2">דירוג קיימות LUMINA</div>
-                                        <div className="text-5xl font-black text-gold tracking-tighter">{result.ecoRating}<span className="text-sm opacity-30">/10</span></div>
-                                        <div className="mt-4 flex items-center gap-2 justify-end">
-                                            <div className="h-1 flex-1 bg-white/5 rounded-full overflow-hidden max-w-[100px]">
-                                                <motion.div initial={{ width: 0 }} animate={{ width: `${result.ecoRating * 10}%` }} className="h-full bg-gold shadow-[0_0_10px_#ffd700]" />
+                                {result && (
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                        <div className="glass-lumina p-8 rounded-[2rem] border border-white/5 bg-gradient-to-br from-emerald-500/[0.08] to-transparent text-right">
+                                            <div className="text-[10px] font-black text-emerald-500/50 uppercase tracking-[0.2em] mb-2">טביעת פחמן (KG CO2E)</div>
+                                            <div className="text-5xl font-black text-white tracking-tighter">{result.carbonFootprint}</div>
+                                            <div className="mt-4 flex items-center gap-2 justify-end">
+                                                <span className="text-[9px] font-mono text-white/20 uppercase tracking-widest">דיוק מוערך: 98.4%</span>
                                             </div>
                                         </div>
+                                        <div className="glass-lumina p-8 rounded-[2rem] border border-white/5 bg-gradient-to-br from-gold/[0.05] to-transparent text-right">
+                                            <div className="text-[10px] font-black text-gold/50 uppercase tracking-[0.2em] mb-2">דירוג קיימות LUMINA</div>
+                                            <div className="text-5xl font-black text-gold tracking-tighter">{result.ecoRating}<span className="text-sm opacity-30">/10</span></div>
+                                            <div className="mt-4 flex items-center gap-2 justify-end">
+                                                <div className="h-1 flex-1 bg-white/5 rounded-full overflow-hidden max-w-[100px]">
+                                                    <motion.div initial={{ width: 0 }} animate={{ width: `${result.ecoRating * 10}%` }} className="h-full bg-gold shadow-[0_0_10px_#ffd700]" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="glass-lumina p-8 rounded-[2rem] border border-white/5 text-right bg-gradient-to-br from-[#3b82f6]/[0.05] to-transparent">
+                                            <div className="text-[10px] font-black text-[#3b82f6]/50 uppercase tracking-[0.2em] mb-2">עלות קיזוז יוקרה</div>
+                                            <div className="text-5xl font-black text-white tracking-tighter">${result.offsetCost}</div>
+                                            <button className="mt-4 text-[9px] font-black text-[#3b82f6] uppercase tracking-[0.2em] hover:text-white transition-colors flex items-center gap-2 justify-end ml-auto">
+                                                שדרג לטיסה ניטרלית פחמן <ChevronRight className="w-3 h-3" />
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div className="glass-lumina p-8 rounded-[2rem] border border-white/5 text-right bg-gradient-to-br from-[#3b82f6]/[0.05] to-transparent">
-                                        <div className="text-[10px] font-black text-[#3b82f6]/50 uppercase tracking-[0.2em] mb-2">עלות קיזוז יוקרה</div>
-                                        <div className="text-5xl font-black text-white tracking-tighter">${result.offsetCost}</div>
-                                        <button className="mt-4 text-[9px] font-black text-[#3b82f6] uppercase tracking-[0.2em] hover:text-white transition-colors flex items-center gap-2 justify-end ml-auto">
-                                            שדרג לטיסה ניטרלית פחמן <ChevronRight className="w-3 h-3" />
-                                        </button>
-                                    </div>
-                                </div>
+                                )}
 
                                 {/* EQUIVALENTS INFOGRAPHIC */}
-                                <div className="glass-lumina p-8 rounded-[3rem] border border-white/5 relative overflow-hidden">
-                                    <div className="absolute inset-0 bg-emerald-500/[0.01] pointer-events-none" />
-                                    <div className="flex items-center gap-2 justify-end mb-8">
-                                        <span className="text-[10px] font-black text-white/30 uppercase tracking-[0.3em]">לקסיקון השפעה טקטי</span>
-                                        <Info className="w-3 h-3 text-emerald-500" />
-                                    </div>
-                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                        {result.equivalents.map((eq, i) => (
-                                            <div key={i} className="p-5 bg-white/[0.02] border border-white/5 rounded-2xl text-right group hover:bg-white/[0.04] transition-all">
-                                                <div className="flex justify-end mb-3">
-                                                    <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center">
-                                                        <Activity className="w-4 h-4 text-emerald-500/40" />
+                                {result && (
+                                    <div className="glass-lumina p-8 rounded-[3rem] border border-white/5 relative overflow-hidden">
+                                        <div className="absolute inset-0 bg-emerald-500/[0.01] pointer-events-none" />
+                                        <div className="flex items-center gap-2 justify-end mb-8">
+                                            <span className="text-[10px] font-black text-white/30 uppercase tracking-[0.3em]">לקסיקון השפעה טקטי</span>
+                                            <Info className="w-3 h-3 text-emerald-500" />
+                                        </div>
+                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                            {result.equivalents.map((eq, i) => (
+                                                <div key={i} className="p-5 bg-white/[0.02] border border-white/5 rounded-2xl text-right group hover:bg-white/[0.04] transition-all">
+                                                    <div className="flex justify-end mb-3">
+                                                        <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+                                                            <Activity className="w-4 h-4 text-emerald-500/40" />
+                                                        </div>
                                                     </div>
+                                                    <p className="text-[13px] font-bold text-white/70 leading-relaxed italic">{eq}</p>
                                                 </div>
-                                                <p className="text-[13px] font-bold text-white/70 leading-relaxed italic">{eq}</p>
-                                            </div>
-                                        ))}
+                                            ))}
+                                        </div>
                                     </div>
-                                </div>
+                                )}
 
                                 {/* TACTICAL ANALYSIS BOX */}
-                                {result.tacticalAnalysis && (
+                                {result?.tacticalAnalysis && (
                                     <div className="p-8 bg-emerald-950/20 border-r-4 border-emerald-500 rounded-l-[2rem] rounded-r-lg relative overflow-hidden">
                                         <div className="absolute top-0 left-0 p-4 opacity-10">
                                             <Zap className="w-20 h-20 text-emerald-500" />
@@ -238,29 +241,31 @@ export function EcoPilotTool() {
                                 )}
 
                                 {/* ELITE ALTERNATIVES */}
-                                <div className="space-y-6">
-                                    <h4 className="text-[10px] font-black text-white/20 uppercase tracking-[0.5em] text-right px-4">מפות דרכים חלופיות (ELITE SELECTION)</h4>
-                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                        {result.greenAlternatives.map((alt, i) => (
-                                            <motion.div
-                                                key={i}
-                                                whileHover={{ y: -5 }}
-                                                className="glass-lumina p-6 rounded-[2.5rem] border border-white/5 hover:border-emerald-500/30 transition-all flex flex-col group h-full"
-                                            >
-                                                <div className="flex justify-between items-start mb-6">
-                                                    <div className="px-2 py-1 rounded bg-emerald-500/20 text-emerald-400 text-[8px] font-black uppercase tracking-widest">{alt.impactReduction} חסכון פחמן</div>
-                                                    <div className="p-3 bg-white/5 rounded-xl group-hover:bg-emerald-500/10 transition-colors">
-                                                        {alt.type.toLowerCase().includes('stay') ? <Globe className="w-4 h-4 text-emerald-500/50" /> : <Wind className="w-4 h-4 text-emerald-500/50" />}
+                                {result && (
+                                    <div className="space-y-6">
+                                        <h4 className="text-[10px] font-black text-white/20 uppercase tracking-[0.5em] text-right px-4">מפות דרכים חלופיות (ELITE SELECTION)</h4>
+                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                            {result.greenAlternatives.map((alt, i) => (
+                                                <motion.div
+                                                    key={i}
+                                                    whileHover={{ y: -5 }}
+                                                    className="glass-lumina p-6 rounded-[2.5rem] border border-white/5 hover:border-emerald-500/30 transition-all flex flex-col group h-full"
+                                                >
+                                                    <div className="flex justify-between items-start mb-6">
+                                                        <div className="px-2 py-1 rounded bg-emerald-500/20 text-emerald-400 text-[8px] font-black uppercase tracking-widest">{alt.impactReduction} חסכון פחמן</div>
+                                                        <div className="p-3 bg-white/5 rounded-xl group-hover:bg-emerald-500/10 transition-colors">
+                                                            {alt.type.toLowerCase().includes('stay') ? <Globe className="w-4 h-4 text-emerald-500/50" /> : <Wind className="w-4 h-4 text-emerald-500/50" />}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className="text-right flex-1">
-                                                    <h5 className="text-md font-black text-white mb-2 leading-tight">{alt.title}</h5>
-                                                    <p className="text-[11px] text-white/40 leading-relaxed font-medium">{alt.description}</p>
-                                                </div>
-                                            </motion.div>
-                                        ))}
+                                                    <div className="text-right flex-1">
+                                                        <h5 className="text-md font-black text-white mb-2 leading-tight">{alt.title}</h5>
+                                                        <p className="text-[11px] text-white/40 leading-relaxed font-medium">{alt.description}</p>
+                                                    </div>
+                                                </motion.div>
+                                            ))}
+                                        </div>
                                     </div>
-                                </div>
+                                )}
                             </motion.div>
                         )}
                     </AnimatePresence>
