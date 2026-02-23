@@ -6,7 +6,7 @@ let genAI: GoogleGenerativeAI | null = null;
  * ⚠️ CRITICAL ARCHITECT NOTE: 
  * Valid versions are: 'gemini-1.5-flash', 'gemini-1.5-pro', 'gemini-2.0-flash'.
  */
-export const getGeminiModel = (modelName: string = 'gemini-2.0-flash') => {
+export const getGeminiModel = (modelName: string = 'gemini-2.5-flash') => {
     if (!genAI) {
         const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
         if (!apiKey) {
