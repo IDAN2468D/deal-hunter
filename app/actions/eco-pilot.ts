@@ -19,22 +19,29 @@ const EcoSchema = z.object({
     })),
     offsetCost: z.number().describe("Cost in USD to offset this trip"),
     ecoRating: z.number().min(1).max(10).describe("1-10 rating of the trip's sustainability"),
+    tacticalAnalysis: z.string().describe("Professional advice on footprint reduction"),
 });
 
 export async function calculateEcoImpactAction(destination: string, durationDays: number, travelers: number) {
     try {
         const prompt = `
-            You are the DealHunter Eco-Pilot Agent. 
-            Analyze a trip to ${destination} for ${travelers} people staying ${durationDays} days.
+            You are the 'Lumina Tactical Eco-Architect'. 
+            Perform a high-fidelity sustainability audit for a precision trip:
+            Destination: ${destination}
+            Parameters: ${travelers} operatives, ${durationDays} day deployment.
             
-            1. Estimate the total carbon footprint (kg CO2e) including average flight and hotel impact.
-            2. Provide 3 fun equivalents contextually related to the footprint.
-            3. Suggest 3 concrete green alternatives (e.g., specific eco-hotels, trains instead of flights, sustainable tours).
-            4. Calculate the offset cost based on $25 per tonne CO2.
-            5. Provide an eco-rating (1-10).
+            Audit Requirements:
+            1. Carbon Breakdown: Provide a granular estimate (kg CO2e) for Flights, Accommodation, and Local Transport.
+            2. Impact Lexicon: Provide 3 high-impact equivalents (e.g., "Equivalent to charging X smartphones", "Impact of Y hours of private jet flight").
+            3. Tactical Green Alternatives: Suggest 3 ELITE alternatives. Include a 'Luxury Eco-Stay', a 'Low-Emission Transit' (Train/EV), and a 'Regenerative Activity'.
+            4. Offset Calculation: Precision calculation based on \$35/tonne (Elite Standard).
+            5. Sustainability Quotient: A score from 1-10 with 2 decimal places.
+            6. Tactical Analysis: A 2-sentence veteran traveler's advice on how to minimize footprint without sacrificing luxury.
             
-            CRITICAL: Return the response in HEBREW for all descriptive text fields (equivalents, title, reduction, description).
-            The output must match the provided schema.
+            CRITICAL OUTPUT DIRECTIVES:
+            - Language: All user-facing strings MUST be in Hebrew.
+            - Tone: Tactical, Professional, Premium (Elite Intelligence style).
+            - Use Hebrew terms like 'טביעת פחמן', 'חלופות ירוקות', 'ניטור'.
         `;
 
         const result = await generateObject({
