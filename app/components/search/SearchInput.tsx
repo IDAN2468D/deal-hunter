@@ -97,7 +97,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({ onSearch, isLoading })
             >
                 <div className="flex items-center gap-1.5 text-white/20">
                     <TrendingUp className="w-3 h-3" />
-                    <span className="text-[9px] font-black uppercase tracking-[0.3em]">Trending</span>
+                    <span className="text-[9px] font-black uppercase tracking-[0.3em] text-right">במגמה</span>
                 </div>
                 {TRENDING.map((tag) => (
                     <button

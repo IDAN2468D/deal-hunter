@@ -78,7 +78,7 @@ export default function Home() {
                 transition={{ delay: 0.4 }}
                 className="absolute -top-12 -left-12 text-[150px] font-black text-white/[0.02] uppercase tracking-tighter leading-none select-none italic pointer-events-none"
               >
-                DISCOVER
+                גלה
               </motion.div>
 
               <motion.h1
@@ -87,9 +87,9 @@ export default function Home() {
                 transition={{ type: "spring", damping: 20, stiffness: 100, delay: 0.5 }}
                 className="text-[14vw] md:text-[13rem] font-black text-white mb-4 tracking-tighter leading-[0.75] uppercase italic"
               >
-                CHASE <br />
+                צוד <br />
                 <span className="text-gradient-lumina drop-shadow-[0_0_80px_rgba(139,92,246,0.5)]">
-                  ULTIMA
+                  דילים
                 </span>
               </motion.h1>
 
@@ -150,7 +150,7 @@ export default function Home() {
           transition={{ delay: 2 }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
         >
-          <span className="text-[9px] font-black uppercase tracking-[0.4em] text-white/20">Operational Feed Below</span>
+          <span className="text-[9px] font-black uppercase tracking-[0.4em] text-white/20">עדכון מבצעים חי למטה</span>
           <div className="w-[1px] h-16 bg-gradient-to-b from-gold/50 to-transparent" />
         </motion.div>
       </section>
@@ -168,7 +168,7 @@ export default function Home() {
             <h2 className="text-4xl font-black uppercase tracking-tighter mb-2">מודיעין עסקאות</h2>
             <div className="flex items-center gap-3 justify-end opacity-40">
               <div className="h-[1px] w-12 bg-white" />
-              <p className="text-[10px] font-bold uppercase tracking-[0.4em]">Live Intelligence Feed</p>
+              <p className="text-[10px] font-bold uppercase tracking-[0.4em]">עדכוני מודיעין חיים</p>
             </div>
           </div>
 

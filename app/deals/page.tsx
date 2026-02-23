@@ -30,8 +30,8 @@ export default async function DealsPage() {
                     {/* Sub-label */}
                     <div className="flex items-center gap-3 mb-8">
                         <div className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
-                        <span className="text-[9px] font-black uppercase tracking-[0.4em] text-white/30">
-                            {deals.length} Active Intelligence Signals
+                        <span className="text-[9px] font-black uppercase tracking-[0.4em] text-white/30 text-right">
+                            סך הכל {deals.length} אותות מודיעין פעילים
                         </span>
                     </div>
 
@@ -45,13 +45,15 @@ export default async function DealsPage() {
                     {/* Stat Bento Grid */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
                         {[
-                            { icon: BarChart3, label: 'Operational', value: deals.length.toString(), color: 'text-gold', bg: 'bg-gold/10 border-gold/20' },
-                            { icon: TrendingDown, label: 'Capital Saved', value: `$${Math.round(savings / 1000)}K`, color: 'text-white', bg: 'bg-white/5 border-white/10' },
-                            { icon: Zap, label: 'Super Hot', value: hotDeals.toString(), color: 'text-orange-400', bg: 'bg-orange-500/10 border-orange-500/20' },
-                            { icon: Sparkles, label: 'Avg. Discount', value: `${avgDiscount}%`, color: 'text-green-400', bg: 'bg-green-500/10 border-green-500/20' },
+                            { icon: BarChart3, label: 'מבצעי שטח', value: deals.length.toString(), color: 'text-gold', bg: 'bg-gold/10 border-gold/20' },
+                            { icon: TrendingDown, label: 'הון שנחסך', value: `$${Math.round(savings / 1000)}K`, color: 'text-white', bg: 'bg-white/5 border-white/10' },
+                            { icon: Zap, label: 'סופר חם', value: hotDeals.toString(), color: 'text-orange-400', bg: 'bg-orange-500/10 border-orange-500/20' },
+                            { icon: Sparkles, label: 'הנחה ממוצעת', value: `${avgDiscount}%`, color: 'text-green-400', bg: 'bg-green-500/10 border-green-500/20' },
                         ].map(({ icon: Icon, label, value, color, bg }) => (
-                            <div key={label} className={`p-6 glass-tactical ${bg} border rounded-[2rem] flex flex-col gap-3 hover:-translate-y-1 transition-transform duration-500`}>
-                                <Icon className={`w-5 h-5 ${color}`} />
+                            <div key={label} className={`p-6 glass-tactical ${bg} border rounded-[2rem] flex flex-col gap-3 hover:-translate-y-1 transition-transform duration-500 text-right`}>
+                                <div className="flex justify-end">
+                                    <Icon className={`w-5 h-5 ${color}`} />
+                                </div>
                                 <div className={`text-4xl font-black ${color}`}>{value}</div>
                                 <div className="text-[9px] font-black uppercase tracking-[0.3em] text-white/30">{label}</div>
                             </div>
@@ -64,9 +66,9 @@ export default async function DealsPage() {
                     {deals.length === 0 ? (
                         <div className="flex flex-col items-center justify-center py-48 glass-tactical rounded-[4rem] border border-white/5">
                             <Trophy className="w-16 h-16 text-white/10 mb-8" />
-                            <p className="text-white/20 text-xl font-black uppercase tracking-tighter mb-8 italic">Awaiting fresh signal deployments.</p>
+                            <p className="text-white/20 text-xl font-black uppercase tracking-tighter mb-8 italic">ממתין לפריסת אותות חדשים.</p>
                             <Link href="/" className="bg-gold text-black font-black text-[10px] uppercase tracking-[0.4em] px-10 py-5 rounded-full hover:bg-gold-bright transition-all shadow-xl shadow-gold/20">
-                                Initiate Intelligence Scan
+                                הפעל סריקת מודיעין
                             </Link>
                         </div>
                     ) : (
@@ -100,29 +102,29 @@ export default async function DealsPage() {
                                             {isHot && (
                                                 <div className="absolute top-5 left-5 bg-black/50 backdrop-blur-xl text-white text-[9px] font-black px-3 py-1.5 rounded-xl border border-gold/30 flex items-center gap-2">
                                                     <Sparkles className="w-2.5 h-2.5 text-gold" />
-                                                    🔥 SUPER HOT
+                                                    🔥 סופר חם
                                                 </div>
                                             )}
 
                                             {/* Live pulse */}
                                             <div className="absolute bottom-5 right-5 flex items-center gap-2">
                                                 <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.8)]" />
-                                                <span className="text-[8px] font-mono text-white/50 uppercase">Live</span>
+                                                <span className="text-[8px] font-mono text-white/50 uppercase">פעיל</span>
                                             </div>
                                         </div>
 
                                         {/* Content */}
                                         <div className="p-6">
-                                            <div className="text-[9px] font-black uppercase tracking-[0.3em] text-gold mb-3">
-                                                {deal.destination?.name ?? 'UNKNOWN_COORD'}
+                                            <div className="text-[9px] font-black uppercase tracking-[0.3em] text-gold mb-3 text-right">
+                                                {deal.destination?.name ?? 'מיקום לא ידוע'}
                                             </div>
-                                            <h3 className="text-white font-black text-base leading-tight mb-5 line-clamp-2 group-hover:text-gold transition-colors duration-500">
+                                            <h3 className="text-white font-black text-base leading-tight mb-5 line-clamp-2 group-hover:text-gold transition-colors duration-500 text-right">
                                                 {deal.title}
                                             </h3>
                                             <div className="flex items-end justify-between pt-4 border-t border-white/5">
-                                                <div>
-                                                    <div className="text-[8px] font-black uppercase tracking-widest text-white/20 mb-1">Market Value</div>
-                                                    <div className="flex items-baseline gap-2">
+                                                <div className="text-right">
+                                                    <div className="text-[8px] font-black uppercase tracking-widest text-white/20 mb-1">ערך שוק</div>
+                                                    <div className="flex flex-row-reverse items-baseline gap-2">
                                                         <span className="text-gold text-2xl font-black">{deal.currency}{deal.price.toLocaleString()}</span>
                                                         <span className="text-white/20 text-xs line-through font-bold">{deal.currency}{deal.originalPrice.toLocaleString()}</span>
                                                     </div>

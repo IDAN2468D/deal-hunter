@@ -103,11 +103,11 @@ export const DealCard: React.FC<DealCardProps> = ({ task, index }) => {
                         className="glass-lumina px-4 py-2 rounded-xl flex items-center gap-2 w-fit"
                     >
                         <div className="w-1.5 h-1.5 rounded-full bg-aurora animate-pulse shadow-[0_0_12px_var(--accent-aurora)]" />
-                        <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/40">Lumina Live</span>
+                        <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/40">לומינה חי</span>
                     </motion.div>
 
                     <div className="glass-lumina text-gold text-[8px] font-black px-3 py-2 rounded-full border border-gold/10 tracking-widest uppercase">
-                        MATCH: 98
+                        התאמה: 98
                     </div>
                 </div>
 
@@ -121,17 +121,17 @@ export const DealCard: React.FC<DealCardProps> = ({ task, index }) => {
                 <div className="flex flex-col gap-6">
                     <div className="space-y-1">
                         <motion.h3
-                            animate={{ opacity: isHovered ? 1 : 0.8, x: isHovered ? 10 : 0 }}
-                            className="text-4xl font-black text-white tracking-tighter uppercase italic drop-shadow-2xl"
+                            animate={{ opacity: isHovered ? 1 : 0.8, x: isHovered ? -10 : 0 }}
+                            className="text-4xl font-black text-white tracking-tighter uppercase italic drop-shadow-2xl text-right"
                         >
                             {task.destination}
                         </motion.h3>
-                        <div className="flex items-center gap-3 text-white/20 text-[9px] font-black uppercase tracking-[0.4em]">
-                            <Compass className="w-3 h-3" /> High-Asset Discovery
+                        <div className="flex flex-row-reverse items-center gap-3 text-white/20 text-[9px] font-black uppercase tracking-[0.4em]">
+                            <Compass className="w-3 h-3" /> גילוי נכס פרימיום
                         </div>
                     </div>
 
-                    <div className="flex items-baseline gap-2">
+                    <div className="flex flex-row-reverse items-baseline gap-2">
                         <span className="text-6xl font-black text-white tracking-tighter leading-none text-gradient-lumina">
                             {view === 'FLIGHT' ? Math.floor(task.budget * 0.45) : task.budget}
                         </span>
@@ -144,13 +144,13 @@ export const DealCard: React.FC<DealCardProps> = ({ task, index }) => {
                                 onClick={() => setView('PACKAGE')}
                                 className={`flex-1 py-4 rounded-[1.5rem] text-[10px] font-black uppercase tracking-widest transition-all duration-500 ${view === 'PACKAGE' ? 'bg-white text-black shadow-2xl' : 'text-white/40 hover:text-white hover:bg-white/5'}`}
                             >
-                                Full Package
+                                חבילה מלאה
                             </button>
                             <button
                                 onClick={() => setView('FLIGHT')}
                                 className={`flex-1 flex items-center justify-center gap-2 py-4 rounded-[1.5rem] text-[10px] font-black uppercase tracking-widest transition-all duration-500 ${view === 'FLIGHT' ? 'bg-gold text-black shadow-2xl' : 'text-white/40 hover:text-white hover:bg-white/5'}`}
                             >
-                                <Plane className="w-4 h-4" /> Flight Only
+                                <Plane className="w-4 h-4" /> טיסה בלבד
                             </button>
                         </div>
 
@@ -158,11 +158,11 @@ export const DealCard: React.FC<DealCardProps> = ({ task, index }) => {
                             onClick={() => setIsItineraryOpen(true)}
                             className="group/btn relative w-full overflow-hidden bg-aurora/80 hover:bg-aurora p-[1.5px] rounded-[2rem] transition-all duration-500 hover:scale-[1.02] active:scale-95 shadow-aurora-glow"
                         >
-                            <div className="relative h-16 bg-[#020202] group-hover/btn:bg-transparent rounded-[2rem] transition-colors duration-500 flex items-center justify-center gap-4">
+                            <div className="relative h-16 bg-[#020202] group-hover/btn:bg-transparent rounded-[2rem] transition-colors duration-500 flex flex-row-reverse items-center justify-center gap-4">
                                 <span className="text-[12px] font-black uppercase tracking-[0.4em] text-white transition-colors duration-500">
-                                    Architect Itinerary
+                                    תכנן מסלול
                                 </span>
-                                <ArrowRight className="w-5 h-5 text-aurora group-hover/btn:text-white transition-all duration-500 group-hover/btn:translate-x-2" />
+                                <ArrowRight className="w-5 h-5 text-aurora group-hover/btn:text-white transition-all duration-500 group-hover/btn:-translate-x-2 rotate-180" />
                             </div>
                         </button>
                     </div>

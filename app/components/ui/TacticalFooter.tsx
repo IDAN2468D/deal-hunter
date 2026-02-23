@@ -6,8 +6,8 @@ import { Shield, Activity, Globe, Zap, Compass, ArrowUpRight } from 'lucide-reac
 import { motion } from 'framer-motion';
 
 const footerLinks = [
-    { label: 'System Links', items: ['Operational Docs', 'API Status', 'Cyber Policy', 'Privacy Protocol'] },
-    { label: 'Field Ops', items: ['Hunter Portal', 'Global Intel', 'Direct Link', 'AI Lab'] },
+    { label: 'קישורי מערכת', items: ['מסמכי תפעול', 'סטטוס API', 'מדיניות סייבר', 'פרוטוקול פרטיות'] },
+    { label: 'פעילות שטח', items: ['פורטל הציידים', 'מודיעין גלובלי', 'קישור ישיר', 'מעבדת AI'] },
 ];
 
 export function TacticalFooter() {
@@ -42,18 +42,18 @@ export function TacticalFooter() {
                                     DEAL<span className="text-gradient-lumina">HUNTER</span>
                                 </span>
                             </div>
-                            <p className="text-[10px] text-white/30 leading-relaxed font-bold uppercase tracking-[0.4em] max-w-sm">
-                                High-performance travel intelligence. <br />
-                                Redefining the high-end narrative.
+                            <p className="text-[10px] text-white/30 leading-relaxed font-bold uppercase tracking-[0.4em] max-w-sm text-right">
+                                מודיעין נסיעות בביצועים גבוהים. <br />
+                                מגדירים מחדש את החופשה היוקרתית.
                             </p>
                         </div>
 
                         <div className="p-8 glass-lumina border border-white/10 rounded-[2.5rem] bg-black/40 space-y-6 shadow-3xl">
                             <div className="flex justify-between items-center">
-                                <span className="text-[8px] font-black uppercase text-white/20 tracking-[0.5em]">Global Lattice</span>
+                                <span className="text-[8px] font-black uppercase text-white/20 tracking-[0.5em]">רשת גלובלית</span>
                                 <div className="flex items-center gap-2">
                                     <div className="w-2 h-2 rounded-full bg-aurora animate-pulse shadow-aurora-glow" />
-                                    <span className="text-[9px] font-black text-aurora uppercase tracking-tighter">Live</span>
+                                    <span className="text-[9px] font-black text-aurora uppercase tracking-tighter">פעיל</span>
                                 </div>
                             </div>
                             <div className="space-y-4">
@@ -72,7 +72,7 @@ export function TacticalFooter() {
                                 ))}
                             </div>
                             <div className="pt-6 border-t border-white/5 flex justify-between text-[9px] font-mono text-white/15 uppercase tracking-widest">
-                                <span>Up: {uptime}s</span>
+                                <span>זמן פעילות: {uptime}ש'</span>
                                 <span className="text-gold/40">{time} LMT</span>
                             </div>
                         </div>
@@ -99,13 +99,13 @@ export function TacticalFooter() {
 
                     {/* Data Visualization */}
                     <div className="lg:col-span-4 space-y-8">
-                        <h4 className="text-[10px] font-black uppercase text-white/20 tracking-[0.5em]">Real-time Metadata</h4>
+                        <h4 className="text-[10px] font-black uppercase text-white/20 tracking-[0.5em] text-right">מטא-דאטה בזמן אמת</h4>
                         <div className="grid grid-cols-2 gap-4">
                             {[
-                                { value: '18.4K', label: 'Nodes', accent: 'text-aurora' },
-                                { value: '99.9%', label: 'Stability', accent: 'text-green-500' },
-                                { value: '$2.4M', label: 'Yield', accent: 'text-gold' },
-                                { value: '0.4ms', label: 'Latency', accent: 'text-white' },
+                                { value: '18.4K', label: 'צמתים', accent: 'text-aurora' },
+                                { value: '99.9%', label: 'יציבות', accent: 'text-green-500' },
+                                { value: '$2.4M', label: 'תשואה', accent: 'text-gold' },
+                                { value: '0.4ms', label: 'זמן תגובה', accent: 'text-white' },
                             ].map(({ value, label, accent }) => (
                                 <motion.div
                                     key={label}
@@ -124,15 +124,15 @@ export function TacticalFooter() {
                 <div className="pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 relative">
                     <div className="absolute top-0 left-0 w-32 h-[1px] bg-aurora opacity-30" />
                     <p className="text-[9px] font-mono text-white/10 uppercase tracking-[0.4em] italic font-black">
-                        © 2026 DealHunter // Lumina Protocol v7.2-Final · Authorized Access Only
+                        © 2026 DealHunter // פרוטוקול לומינה v7.2-סופי · גישה מורשית בלבד
                     </p>
                     <div className="flex gap-10">
                         <span className="text-[9px] font-mono text-white/20 uppercase tracking-widest flex items-center gap-3">
                             <span className="w-1.5 h-1.5 rounded-full bg-green-500/40" />
-                            Secure_Handshake_Complete
+                            לחיצת_יד_מאובטחת_הושלמה
                         </span>
                         <div className="text-[9px] font-mono text-aurora/30 uppercase tracking-[0.3em] font-black">
-                            // High_End_Narrative_Running
+                            // נרטיב_יוקרה_פעיל
                         </div>
                     </div>
                 </div>

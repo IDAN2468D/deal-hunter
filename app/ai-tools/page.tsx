@@ -206,7 +206,7 @@ export default function AIToolsPage() {
                                             <div key={i} className={`w-1 h-3 rounded-full ${i <= 4 ? 'bg-gold/40' : 'bg-white/5'}`} />
                                         ))}
                                     </div>
-                                    <span className="text-[10px] font-mono text-gold font-bold">GEMINI_1.5_PRO</span>
+                                    <span className="text-[10px] font-mono text-gold font-bold uppercase transition-all">GEMINI_2.5_FLASH</span>
                                 </div>
                             </div>
                             <div className="h-10 w-[1px] bg-white/10 mx-2" />

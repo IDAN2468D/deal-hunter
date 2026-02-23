@@ -33,11 +33,11 @@ export function TacticalNav() {
     }, []);
 
     const navLinks = [
-        { name: 'Discover', href: '/deals', icon: Compass },
-        { name: 'Research', href: '/search', icon: Search },
-        { name: 'Assets', href: '/analytics', icon: BarChart3 },
-        { name: 'Lumina Lab', href: '/ai-tools', icon: Sparkles, highlight: true },
-        { name: 'Signals', href: '/price-watch', icon: Bell },
+        { name: 'גילוי', href: '/deals', icon: Compass },
+        { name: 'מחקר', href: '/search', icon: Search },
+        { name: 'ניתוח', href: '/analytics', icon: BarChart3 },
+        { name: 'מעבדת ה-AI', href: '/ai-tools', icon: Sparkles, highlight: true },
+        { name: 'התראות', href: '/price-watch', icon: Bell },
     ];
 
     return (
@@ -70,11 +70,11 @@ export function TacticalNav() {
                                 <Compass className="w-6 h-6 text-aurora" />
                             </div>
                         </motion.div>
-                        <div className="flex flex-col">
+                        <div className="flex flex-col text-right">
                             <span className="font-black text-2xl tracking-tighter text-white uppercase italic leading-none">
                                 DEAL<span className="text-gradient-lumina">HUNTER</span>
                             </span>
-                            <span className="text-[8px] font-black uppercase tracking-[0.6em] text-white/20 mt-1">Lumina Paradigm</span>
+                            <span className="text-[8px] font-black uppercase tracking-[0.6em] text-white/20 mt-1">פרדיגמת לומינה</span>
                         </div>
                     </Link>
 
@@ -105,7 +105,7 @@ export function TacticalNav() {
                         <div className="flex items-center gap-4">
                             <Link href="/hunter-portal" className="hidden sm:flex items-center gap-3 glass-lumina border border-white/10 px-6 py-3.5 rounded-2xl text-[10px] font-black text-white/60 hover:bg-gold hover:text-black hover:border-gold transition-all duration-500 uppercase tracking-widest group shadow-2xl">
                                 <Trophy className="w-4 h-4 text-gold group-hover:text-black transition-transform" />
-                                <span>Elite</span>
+                                <span>עלית</span>
                             </Link>
                             <UserMenu />
                             <button
@@ -132,9 +132,9 @@ export function TacticalNav() {
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[600px] bg-aurora/5 blur-[200px] rounded-full -z-10" />
 
                         <div className="flex justify-between items-center mb-16">
-                            <div className="flex flex-col">
-                                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-aurora mb-2">Navigation System</span>
-                                <h2 className="text-4xl font-black text-white uppercase tracking-tighter italic">Command <span className="text-gradient-lumina">Matrix</span></h2>
+                            <div className="flex flex-col text-right">
+                                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-aurora mb-2">מערכת ניווט טקטית</span>
+                                <h2 className="text-4xl font-black text-white uppercase tracking-tighter italic">מטריצת <span className="text-gradient-lumina">פיקוד</span></h2>
                             </div>
                             <button
                                 onClick={() => setIsOpen(false)}
@@ -170,16 +170,16 @@ export function TacticalNav() {
                             <div className="p-8 glass-lumina rounded-[2.5rem] border border-white/5 flex flex-col justify-between aspect-square shadow-2xl overflow-hidden relative group">
                                 <div className="absolute inset-0 bg-gold/5 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <Trophy className="w-8 h-8 text-gold relative z-10" />
-                                <div className="relative z-10">
-                                    <div className="text-[10px] font-black text-white/20 uppercase tracking-widest mb-1">Status</div>
-                                    <div className="text-lg font-black uppercase tracking-tighter text-white">Elite Asset</div>
+                                <div className="relative z-10 text-right">
+                                    <div className="text-[10px] font-black text-white/20 uppercase tracking-widest mb-1">סטטוס</div>
+                                    <div className="text-lg font-black uppercase tracking-tighter text-white">נכס עלית</div>
                                 </div>
                             </div>
                             <div className="p-8 glass-lumina rounded-[2.5rem] border border-white/5 flex flex-col justify-between aspect-square shadow-2xl relative group overflow-hidden">
                                 <div className="absolute inset-0 bg-aurora/5 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <Activity className="w-8 h-8 text-aurora relative z-10" />
-                                <div className="relative z-10">
-                                    <div className="text-[10px] font-black text-white/20 uppercase tracking-widest mb-1">Realtime</div>
+                                <div className="relative z-10 text-right">
+                                    <div className="text-[10px] font-black text-white/20 uppercase tracking-widest mb-1">זמן אמת</div>
                                     <div className="text-lg font-mono text-white tracking-widest">{systemTime}</div>
                                 </div>
                             </div>
