@@ -12,8 +12,10 @@ import { SquadTool } from '@/app/components/ai-tools/SquadTool';
 import { VisionTool } from '@/app/components/ai-tools/VisionTool';
 import { AlertsTool } from '@/app/components/ai-tools/AlertsTool';
 import { IntelTool } from '@/app/components/ai-tools/IntelTool';
+import { EcoPilotTool } from '@/app/components/ai-tools/EcoPilotTool';
+import { Leaf } from 'lucide-react';
 
-type ToolType = 'BUDGET' | 'SQUAD' | 'VISUAL' | 'ALERTS' | 'REVIEWS';
+type ToolType = 'BUDGET' | 'SQUAD' | 'VISUAL' | 'ALERTS' | 'REVIEWS' | 'ECO';
 
 const tools: { id: ToolType; name: string; nameEn: string; icon: React.ElementType; color: string; gradient: string; status: string; desc: string }[] = [
     { id: 'BUDGET', name: 'תקציב חכם', nameEn: 'Smart Budget', icon: Calculator, color: '#3b82f6', gradient: 'from-blue-500/20 to-blue-500/5', status: 'אופטימיזציה פיננסית', desc: 'הקצאת הון עצבית' },
@@ -21,6 +23,7 @@ const tools: { id: ToolType; name: string; nameEn: string; icon: React.ElementTy
     { id: 'VISUAL', name: 'סריקה חזותית', nameEn: 'Visual Scan', icon: ImageIcon, color: '#ef4444', gradient: 'from-red-500/20 to-red-500/5', status: 'ראייה ממוחשבת', desc: 'זיהוי יעדים חכם' },
     { id: 'ALERTS', name: 'התראות מחיר', nameEn: 'Price Alerts', icon: Bell, color: '#8b5cf6', gradient: 'from-violet-500/20 to-violet-500/5', status: 'דופק שוק', desc: 'ניטור מחירים חזוי' },
     { id: 'REVIEWS', name: 'ניתוח ביקורות', nameEn: 'Review Intel', icon: MessageSquare, color: '#f59e0b', gradient: 'from-amber-500/20 to-amber-500/5', status: 'ניתוח רגשות NLP', desc: 'תובנות מעומק הביקורות' },
+    { id: 'ECO', name: 'מצפן קיימות', nameEn: 'Eco Pilot', icon: Leaf, color: '#10b981', gradient: 'from-emerald-500/20 to-emerald-500/5', status: 'ניטור פחמן', desc: 'תכנון חופשה ירוקה' },
 ];
 
 export default function AIToolsPage() {
@@ -229,6 +232,7 @@ export default function AIToolsPage() {
                                 {selectedTool === 'VISUAL' && <VisionTool />}
                                 {selectedTool === 'ALERTS' && <AlertsTool />}
                                 {selectedTool === 'REVIEWS' && <IntelTool />}
+                                {selectedTool === 'ECO' && <EcoPilotTool />}
                             </motion.div>
                         </AnimatePresence>
                     </div>
