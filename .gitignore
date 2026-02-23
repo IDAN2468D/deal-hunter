@@ -41,5 +41,4 @@ yarn-error.log*
 next-env.d.ts
 
 # laboratory testing
-.scripts/test-models.ts
-.scripts/test-minimal.ts
+/scripts/
